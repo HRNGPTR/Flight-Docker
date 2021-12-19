@@ -1,0 +1,232 @@
+<zk>
+<!--    <button label="Személyes adatok" onClick="@command('open')" />-->
+     <style>
+         .grid-container {
+<!--            display: grid;-->
+<!--            grid-template-columns: auto auto auto auto auto auto;-->
+            margin-left:300px;
+            margin-right:300px;
+         }
+
+<!--         .seat == 3-->
+         .RESERVED {
+<!--         width: 15px;-->
+         margin: 2px;
+         background-color: #d3d3d3;
+         color: #808080;
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         box-shadow: none;
+         }
+         .RESERVED:hover {
+         background-color: #d3d3d3;
+         color: #808080;
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         }
+         .RESERVED:focus {
+         background-color: #d3d3d3;
+         color: #808080;
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         }
+<!--         .free-seat-->
+         .FREE {
+<!--         width: 15px;-->
+         margin: 2px;
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         box-shadow: none;
+         background-color: #006400;
+         color: #FFFFFF;
+         }
+         .FREE:hover {
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         background-color: #006400;
+         color: #FFFFFF;
+         }
+         .FREE:focus {
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         background-color: #006400;
+         color: #FFFFFF;
+         }
+<!--         .selected-seat == 2-->
+         .SELECTED {
+<!--         width: 15px;-->
+         margin: 2px;
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         box-shadow: none;
+         background-color: #c71585;
+         color: #FFFFFF;
+         }
+         .SELECTED:hover{
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         background-color: #c71585;
+         color: #FFFFFF;
+         }
+         .SELECTED:focus {
+         border: 3px outset grey;
+         border-radius: 0;
+         border-style: inset;
+         background-color: #c71585;
+         color: #FFFFFF;
+         }
+
+         .h-container {
+         padding-top: 10px;
+         padding-bottom: 10px;
+         margin-left: 30px;
+         }
+         .v-container {
+         padding-left: 10px;
+         padding-right: 10px;
+         }
+         .inf-label {
+         color: 	#c71585;
+         font-family: Monaco, "Courier New", monospace;
+         font-weight: bold;
+         text-align: left;
+         }
+         .inf-input {
+         width: 100px;
+         margin-right: 0;
+         }
+
+         .z-row:hover>.z-row-inner,
+         .z-row:hover>.z-cell {
+         background-color: #ffffff;
+         }
+
+         .flight-info {
+            background-color: #d3d3d3;
+            width: 300px;
+            padding: 10px;
+         }
+         .flight-info .z-label {
+            text-align: left;
+         }
+         .main-label {
+            font-weight: bold;
+         }
+         .form-button{
+         background-color: #c71585;
+         font-weight: bold;
+         }
+         .form-button:hover {
+         opacity: 0.7;
+         background-color: #c71585;
+         }
+         .form-button:focus {
+         background-color: #c71585;
+         opacity: 1;
+         }
+         .z-column {
+         background-color:#c71585;
+         }
+     </style>
+        <borderlayout width="1300px" height="100%" >
+            <west width="300px" autoscroll="true">
+                <vlayout sclass="v-layout" >
+                    <vlayout sclass="flight-info">
+                        <label value="JÁRAT" sclass="main-label"/>
+                        <label value="@load(vm.flight.date)" />
+                        <hbox>
+                            <label value="@load(vm.flight.departure.city)" sclass="main-label"/>
+                            <label value=" - " sclass="main-label" />
+                            <label value="@load(vm.flight.arrival.city)" sclass="main-label" />
+                        </hbox>
+                        <hbox>
+                            <label value="@load(vm.flight.dateHour)" />
+                            <label value=" - " />
+                            <label value="@load(vm.flight.arrivalTime)" />
+                        </hbox>
+                        <hbox>
+                            <label value="@load(vm.passengerNum)" />
+                            <label value=" x Repülőjegy " />
+<!--                            <label value="1000" />-->
+<!--                            <label value=" Ft" />-->
+                        </hbox>
+                    </vlayout>
+                    <grid >
+                        <rows >
+                        <row >
+                            <label value="Keresztnév" sclass="inf-label"/>
+                            <textbox sclass="inf-input" value="@bind(vm.firstName)"/>
+                        </row>
+                        <row>
+                            <label value="Vezetéknév" sclass="inf-label"/>
+                            <textbox sclass="inf-input" value="@bind(vm.secondName)"/>
+                        </row>
+                        <row>
+                            <label value="Nem" sclass="inf-label"/>
+                            <combobox sclass="inf-input" value="@bind(vm.sex)">
+                                <comboitem label="FEMALE" value="FM"/>
+                                <comboitem label="MALE" value="M"/>
+                            </combobox>
+                        </row>
+                        <row>
+                            <label value="Útlevél" sclass="inf-label"/>
+                            <textbox sclass="inf-input" value="@bind(vm.passport)"/>
+                        </row>
+                        <row>
+                            <button label="Mentés" onClick="@command('createSeatReservation')" sclass="form-button"/>
+                        </row>
+                        </rows>
+                    </grid>
+
+                    <grid model="@bind(vm.passengers)" sizedByContent="true" span="true">
+                        <columns>
+                            <column label="Utasok" align="center" style="font-family: Monaco, 'Courier New', monospace;font-weight: bold;
+                                font-size: 110%" />
+                        </columns>
+                            <template name="model" >
+                                <row>
+                                    <vbox>
+                                        <label value="Név: ${each.firstName} ${each.secondName}" />
+                                        <label value="Nem: ${each.sex}" />
+                                        <label value="Útlevél: ${each.passport}" />
+                                    </vbox>
+                                </row>
+                            </template>
+                    </grid>
+                </vlayout>
+            </west>
+            <east width="1000px" autoscroll="true">
+                <div sclass="grid-container" >
+                    <grid width="400px" model="@load(vm.seatRows)" sizedByContent="true" span="true">
+                        <template name="model">
+                            <row>
+                                <div>
+                                <button label="A" sclass="${each.getRow().get(0).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(0).getId())"/>
+                                <button label="B" sclass="${each.getRow().get(1).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(1).getId())"/>
+                                <button label="C" sclass="${each.getRow().get(2).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(2).getId())"/>
+                                <label value="${each.num}" style="padding-left:2px; padding-right:2px"/>
+                                <button label="D" sclass="${each.getRow().get(3).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(3).getId())"/>
+                                <button label="E" sclass="${each.getRow().get(4).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(4).getId())"/>
+                                <button label="F" sclass="${each.getRow().get(5).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(5).getId())" href="/userReservations"/>
+                                </div>
+                            </row>
+                        </template>
+                    </grid>
+                </div>
+            </east>
+        </borderlayout>
+</zk>

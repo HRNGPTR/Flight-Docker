@@ -1,0 +1,21 @@
+<zk>
+    <style>
+        .box {
+        margin: auto;
+        width: 300px;
+        height: 50px;
+        border: 1px solid #c71585;
+        }
+        .z-label {
+        color: 	#c71585;
+        font-family: Monaco, "Courier New", monospace;
+        font-weight: bold;
+        }
+    </style>
+    <div>
+        <vbox sclass="box" align="center">
+            <label value="Sorry, something went wrong"/>
+            <a href="/" style="color: #c71585">Return home</a>
+        </vbox>
+    </div>
+</zk>

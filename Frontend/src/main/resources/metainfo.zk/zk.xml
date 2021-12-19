@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <config-name>zkspringboot-demo</config-name>
+    <library-property>
+        <name>org.zkoss.zul.nativebar</name>
+        <value>true</value>
+    </library-property>
+
+    <!--enable websocket support in ZK 8.5.1 (ZK-3799)  -->
+    <!--    <listener>-->
+    <!--        <listener-class>org.zkoss.zkmax.au.websocket.WebSocketWebAppInit</listener-class>-->
+    <!--    </listener>-->
+
+    <!--    <richlet>-->
+    <!--        <richlet-name>ExampleRichlet</richlet-name>&lt;!&ndash; your preferred name &ndash;&gt;-->
+    <!--        <richlet-class>org.zkoss.zkspringboot.demo.richlet.ExampleRichlet</richlet-class>&lt;!&ndash; your class name, of course &ndash;&gt;-->
+    <!--    </richlet>-->
+    <!--    <richlet-mapping>-->
+    <!--        <richlet-name>ExampleRichlet</richlet-name>-->
+    <!--        <url-pattern>/richlet/example</url-pattern>-->
+    <!--    </richlet-mapping>-->
+</zk>

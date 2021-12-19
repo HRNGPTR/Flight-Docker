@@ -1,0 +1,80 @@
+<zk>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            column-count: 6;
+
+        }
+        .grid-item {
+            padding: 20px;
+            border: 1px solid black;
+            margin: 2px;
+            background-color: white;
+            color: black;
+
+        }
+    </style>
+    <div>
+<!--        <borderlayout sclass="complex-layout" height="400px">-->
+        <borderlayout sclass="complex-layout" height="550px">
+            <center>
+<!--                <grid model="@load(vm.seats)" sclass="grid-container"  sizedByContent="true" span="true" style="overflow: scroll;" height="380">-->
+<!--                <template name="model" var="item">-->
+<!--                    <row>-->
+<!--                        <button label="@load(item)" onClick="@command('getButton', button=item)" />-->
+<!--                    </row>-->
+<!--                </template>-->
+<!--                </grid>-->
+<!--                <panel title="Ülések" border="normal"-->
+<!--                       height="100%" hflex="1">-->
+<!--                    <panelchildren>-->
+<!--                        <grid height="200px" model="@load(vm.seats)" sizedByContent="true" span="true">-->
+<!--                            <template name="model" >-->
+<!--                                <row>-->
+<!--                                    <button label="@load(each)" />-->
+<!--                                    <button label="@load(each)" />-->
+<!--                                    <button label="@load(each)" />-->
+<!--                                </row>-->
+<!--                            </template>-->
+<!--                        </grid>-->
+<!--                    </panelchildren>-->
+<!--                </panel>-->
+                <grid model="@load(vm.seatRep)" height="350px">
+                    <auxhead>
+                        <auxheader label="ÜLÉSEK"></auxheader>
+                    </auxhead>
+                    <columns>
+                        <column label="A"></column>
+                        <column label="B"></column>
+                        <column label="C"></column>
+                        <column label="D"></column>
+                        <column label="E"></column>
+                        <column label="F"></column>
+                    </columns>
+                    <rows>
+                        <template name="model">
+                            <row align="center">
+                                <button label="${each.get(0).number}" onClick="@command('getButton',button=each.get(0).number)"/> <!--num=each.number-->
+                                <button label="${each.get(1).number}" onClick="@command('getButton',button=each.get(1).number)"/>
+                                <button label="${each.get(2).number}" onClick="@command('getButton',button=each.get(2).number)"/>
+                                <button label="${each.get(3).number}" onClick="@command('getButton',button=each.get(3).number)"/>
+                                <button label="${each.get(4).number}" onClick="@command('getButton',button=each.get(4).number)"/>
+                                <button label="${each.get(5).number}" onClick="@command('getButton',button=each.get(5).number)"/>
+                            </row>
+                        </template>
+                    </rows>
+                </grid>
+            </center>
+            <south>
+                <hlayout>
+                    <label value="Név" />
+                    <textbox value="@save(vm.name)" />
+                    <label value="Útlevél szám" />
+                    <textbox value="@save(vm.passport)"/>
+                    <button label="OK" onClick="@command('reserveSeat')" ></button>
+                </hlayout>
+            </south>
+        </borderlayout>
+    </div>
+</zk>

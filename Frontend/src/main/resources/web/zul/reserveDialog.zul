@@ -1,0 +1,95 @@
+<window id="reserveDialog" width="500px" height="500px" closable="false" mode="modal">
+    <style>
+        .container {
+<!--            margin-left: auto;-->
+<!--            margin-right: auto;-->
+            padding-top: 10px;
+            padding-button: 10px;
+        }
+
+        .container .z-label {
+            padding-right: 10px;
+            color: #c71585;
+            font-weight: bold;
+            font-family: Monaco, "Courier New", monospace;
+        }
+        .container .z-textbox{
+            width: 150px;
+            padding-right: 0;
+            margin-right: 0;
+        }
+        .container .z-combobox {
+            width: 150px;
+        }
+        #submitButton {
+            background-color: #c71585;
+            font-family: Monaco, "Courier New", monospace;
+            font-weight: bold;
+            margin: 0 auto;
+            display: block;
+        }
+        .z-row:hover>.z-row-inner,
+        .z-row:hover>.z-cell {
+        background-color: #ffffff;
+        }
+        .z-button:hover {
+        opacity: 0.7;
+        background-color: #c71585;
+        }
+        .z-button:focus {
+        background-color: #c71585;
+        opacity: 1;
+        }
+
+    </style>
+    <div style="border: 1px solid #A9A9A9">
+        <label value="Utas adatai" style="color: #A9A9A9;
+            font-family: Monaco, 'Courier New', monospace; font-size: 150%; font-weight: bold; text-align: center"/>
+    <grid sclass="container" >
+        <rows>
+        <row>
+            <cell>
+                <label value="Keresztnév" />
+            </cell>
+            <cell>
+                <textbox id="firstName" value="@save(vm.firstName)"/>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <label value="Vezetéknév" />
+            </cell>
+            <cell>
+                <textbox id="secondName" value="@save(vm.secondName)"/>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <label value="Útlevélszám" />
+            </cell>
+            <cell>
+                <textbox id="passportNumber" value="@save(vm.passport)"/>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <label value="Nem" />
+            </cell>
+            <cell>
+                <combobox value="@save(vm.gender)">
+                    <comboitem label="Férfi" value="Férfi" />
+                    <comboitem label="Nő" value="Nő" />
+                </combobox>
+            </cell>
+        </row>
+        </rows>
+    </grid>
+        <button label="RÖGZITÉS" onClick="@command('reserveIt')"  sclass="container" style="background-color: #c71585;
+            font-family: Monaco, 'Courier New', monospace;
+            font-weight: bold;
+            margin: 0 auto; margin-top: 10px;
+            display: block; "/>
+    </div>
+
+
+</window>

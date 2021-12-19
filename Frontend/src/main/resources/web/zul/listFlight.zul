@@ -1,0 +1,64 @@
+<zk>
+    <style>
+        .flight .z-button {
+            background-color: #c71585;
+            font-family: Monaco, "Courier New", monospace;
+        }
+        .flight .z-button:hover {
+            opacity: 70%;
+        }
+        .flight .z-label {
+            color: #A9A9A9;
+            font-family: Monaco, "Courier New", monospace;
+        }
+        .bar {
+            background-color:#c71585;
+            opacity:0.0;
+            transition: opacity 1s;
+            float: left;
+        }
+        .z-row:hover .bar {
+            opacity: 1.0;
+        }
+        .z-row:hover>.z-row-inner,
+        .z-row:hover>.z-cell {
+            background-color: #ffffff;
+        }
+        .z-column {
+            background-color:#c71585;
+        }
+    </style>
+                <div vflex="1">
+<!--                    <grid height="400px"  model="@load(vm.flights)" sizedByContent="true" span="true" >-->
+                    <grid  model="@load(vm.flights)" sizedByContent="true" span="true" >
+                        <columns>
+                            <column label="Járatok" align="center" style="font-family: Monaco, 'Courier New', monospace;font-weight: bold;
+                                font-size: 110%"/>
+                        </columns>
+                        <template name="model">
+                            <row width="400px">
+                                    <hlayout sclass="flight">
+                                        <div width="10px" height="80px"  sclass="bar" />
+                                        <vlayout style="margin-right: 200px; align-content: left" >
+                                            <label value="${each.date}" style="color:black; text-align:left; float:left"/>
+                                            <label value="${each.dateHour}" style="text-align:left; font-size: 200%; color:black; float:left"/>
+                                            <label value="${each.departure.city}" style="text-align:left; float: left"/>
+                                        </vlayout>
+                                        <vlayout>
+                                            <separator orient="horizontal" bar="true" width="300px" style="margin-left:auto;
+                                                margin-right:auto; padding-top: 60px; padding-bottom:0;margin-bottom:0"/>
+                                            <label value="${each.travelTime.getHour()}ó ${each.travelTime.getMinute()}p" style="margin-left:auto; margin-right:auto; padding-top:0; margin-top:0" />
+                                        </vlayout>
+                                        <vlayout style="margin-left: 200px">
+                                            <label value="${each.arrivalTime}" style="text-align:left; font-size: 200%; color:black; float:left; text-align:left"/>
+                                            <label value="${each.arrival.city}" style="float:left;text-align:left" />
+                                        </vlayout>
+<!--                                        @load((“increase” = x -> x + 1; “increase”(5)))-->
+<!--                                        label="${each.seatPrice} Ft"-->
+                                            <button onClick="@command('reservation',id=each.id)"  label="${each.seatPrice} Ft / Jegy" style="margin-left: 200px" />
+                                    </hlayout>
+                            </row>
+                        </template>
+                    </grid>
+                </div>
+</zk>

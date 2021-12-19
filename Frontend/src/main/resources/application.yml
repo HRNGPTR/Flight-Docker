@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    default: "dev"
+  application:
+    name: Frontend
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/flight_ticket_application_2?serverTimezone=UTC
+    username: root
+    password: TOmi1970
+server:
+  port: 80
+backendUri: http://localhost:81
+---
+spring:
+  config:
+    activate:
+      on-profile: dockerized
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_ROOT_PASSWORD}
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+      formar_sql: true
+server:
+  port: 8080
+backendUri: http://backend:8081
+---

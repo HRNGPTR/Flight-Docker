@@ -1,0 +1,36 @@
+<zk>
+<!--    <window viewModel="@id('vm') @init('com.example.ticketfrontend.viewmodel.SearchViewModel')" >-->
+<!--    <window viewModel="@id('vm') @init('hu.peter.frontend.viewmodel.ViewModel')" vflex="1">-->
+    <style src="~./css/mySpecial.css" />
+    <style>
+        .gl {
+            color: #ffffff;
+            text-transform: capitalize;
+            font-size: 150%;
+
+        }
+    </style>
+
+        <borderlayout viewModel="@id('vm') @init('hu.peter.frontend.viewmodel.ViewModel')" >
+            <north size="90px" border="0" style="background-color:#191970;padding:0;margin:0">
+                <div>
+                    <div style="float:right">
+<!--                        <textbox sclass="demo-search-inp" />-->
+<!--                        <button label="Search ZK Resource"-->
+<!--                                 />-->
+<!--                        <label value="@load(('Szép napot ' += vm.currentUsername += '!'))" sclass="gl"/>-->
+                        <a href="/userReservations" label="@load(vm.currentUsername)" style="color:white" sclass="gl"></a>
+                    </div>
+                    <label sclass="complex-layout-header-label"
+                           value="Magenta Airline" style="color: white"/>
+                </div>
+            </north>
+            <center  sclass="bg" border="0">
+<!--                <include src="~./zul/userReservations.zul" />-->
+                <include src="@bind(vm.view)" />
+            </center>
+        </borderlayout>
+<!--        <include src="@bind(vm.view)" />-->
+<!--        <include src="~./zul/openingPage.zul" />-->
+<!--    </window>-->
+</zk>

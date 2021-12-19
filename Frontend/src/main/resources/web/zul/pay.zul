@@ -1,0 +1,7 @@
+<zk>
+    <div width="400px" height="400px" style="margin: auto">
+<!--        <button label="FIZETÉS" onClick="@command('pay')"/>-->
+        <label value="Ez a fizetés oldala. Itt lehetne fizetni." />
+        <a href="/logout">Kilépés</a>
+    </div>
+</zk>

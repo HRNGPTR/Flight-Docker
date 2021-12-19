@@ -1,0 +1,137 @@
+<!--
+    To test
+-->
+<zk>
+    <style>
+        .breeze .complex-layout, .breeze .complex-layout .z-south, .breeze .complex-layout .z-west {
+        background: #F7F7F7;
+        }
+        .z-borderlayout {  background: #FFFFFF }
+        .complex-layout .z-north { background: #008BB6; }
+        .complex-layout .z-north > div { padding: 5px; }
+        img.complex-layout-header-img { padding: 0 10px; }
+        .complex-layout-header-label {
+        position: relative; top: -30px;
+        padding-left: 40px; font-size: 24px;
+        color: White; font-weight: bold;
+        }
+        .inner-border, .inner-border .z-north, .inner-border .z-west,
+        .inner-border .z-south, .inner-border .z-east { background: #FFFFFF; }
+        .dl-link { text-decoration: none; cursor: pointer; }
+    </style>
+    <div>
+        <borderlayout sclass="complex-layout" height="810px">
+            <north size="90px" border="0">
+            </north>
+            <!-- Sidebar -->
+            <west width="200px" border="0" flex="true" splittable="true"
+                  margins="0,5,0,0">
+            </west>
+            <east width="130px" title="Quick Links" flex="true">
+            </east>
+            <!-- Content -->
+            <center>
+                <borderlayout sclass="inner-border">
+                    <north border="0" height="4%" margins="2,3,0,0">
+                        <label value="HOME" style="font-size:20px;" />
+                    </north>
+                    <center border="0" margins="0,3,3,3">
+                        <panel title="Járat keresése" border="normal"
+                               height="100%">
+                            <panelchildren>
+                                <grid style="border:0;">
+                                    <columns>
+                                        <column align="left" />
+                                    </columns>
+                                    <rows>
+                                        <row>
+                                            <div>
+                                                <label value="Kiindulási repülőtér" />
+                                                <separator orient="vertical" />
+                                                <textbox value="@bind(vm.fromCity)" constraint="no empty"
+                                                         onChanging="@command('recommendCityCommand',prefix=event.value)"/>
+                                            </div>
+                                        </row>
+                                        <row>
+                                            <div>
+                                                <label value="Úti cél" />
+                                                <separator orient="vertical" />
+                                                <textbox value="@bind(vm.toCity)" constraint=" no empty"
+                                                         onChanging="@command('recommendCityCommand',prefix=event.value)"/>
+                                            </div>
+                                        </row>
+                                        <row>
+                                            <div>
+                                                <label value="Dátum" />
+                                                <separator orient="vertical" />
+                                                <datebox value="@save(vm.date)" constraint="no past, no empty" format="yyyy-MM-dd" showTodayLink="true" />
+                                                <!--                                                <datebox id="db0" cols="12" format="short " constraint="no past, no empty"-->
+                                                <!--&lt;!&ndash;                                                showTodayLink="true" onCreate="self.value = new Date()" value="@save(date)"></datebox>&ndash;&gt;-->
+                                            </div>
+                                        </row>
+                                        <row>
+                                            <div>
+                                                <label value="Utasok száma" />
+                                                <separator orient="vertical" />
+                                                <spinner  value="@save(vm.passengers), @init(1)" step="1"
+                                                          constraint="no empty, min 1 max 10" />
+                                            </div>
+                                        </row>
+                                        <!--                                        <row>-->
+                                        <!--                                            <div>-->
+                                        <!--                                                <label value="Kindulási repülőtér"/>-->
+                                        <!--                                                <separator-->
+                                        <!--                                                        orient="vertical" />-->
+                                        <!--                                                <textbox value="@save(vm.departureCity)" constraint="no empty"></textbox>-->
+                                        <!--                                            </div>-->
+                                    </rows>
+                                </grid>
+                                <button label="KERESÉS" onClick="@command( 'changeView', page='~./zul/flight.zul' )"></button>
+                            </panelchildren>
+                        </panel>
+                    </center>
+                    <east border="0" width="50%" margins="0,0,3,3">
+                        <panel title="Cities" border="normal"
+                               height="100%">
+                        <panelchildren>
+                        <grid model="@bind(vm.citiesByPrefix)" style="border:0;">
+                            <columns>
+                                <column align="center">Cities</column>
+                            </columns>
+                            <rows>
+                                <template name="model" >
+                                    <row onClick="@command('setCityCommand',cityName=each.name)">
+                                        <label value="${each.name}" />
+                                    </row>
+                                </template>
+                            </rows>
+                        </grid>
+                        </panelchildren>
+                        </panel>
+                    </east>
+                    <south border="1" height="37%" margins="0,0,3,3">
+                        <panel border="normal">
+                            <panelchildren style="overflow:auto;">
+                                <label value="Air Company" />
+                            </panelchildren>
+                        </panel>
+                    </south>
+                </borderlayout>
+            </center>
+            <south size="40px" border="0"
+                   style="background: none repeat scroll 0 0 ;">
+                <toolbar mold="panel" align="center">
+                    <toolbarbutton label="Sign in" />
+                    <toolbarbutton label="Home" />
+                    <toolbarbutton label="Sitemap" />
+                    <toolbarbutton label="Terms" />
+                    <toolbarbutton label="Report Abuse" />
+                    <toolbarbutton label="Print" />
+                    <separator orient="vertical" bar="true" />
+                    Powered by ZK ${desktop.webApp.version} ZK
+                    Borderlayout
+                </toolbar>
+            </south>
+        </borderlayout>
+    </div>
+</zk>

@@ -1,0 +1,50 @@
+<zk>
+    <style>
+        .z-label {
+        color: 	#c71585;
+        font-family: Monaco, "Courier New", monospace;
+        font-weight: bold;
+        }
+        .z-button {
+        background-color: #c71585;
+        font-weight: bold;
+        }
+        .z-button:hover {
+        opacity: 0.7;
+        background-color: #c71585;
+        }
+        .z-button:focus {
+        background-color: #c71585;
+        opacity: 1;
+        }
+        .z-row:hover>.z-row-inner,
+        .z-row:hover>.z-cell {
+        background-color: #ffffff;
+        }
+    </style>
+    <grid width="450px" style="margin:auto" apply="org.zkoss.bind.BindComposer" viewModel="@id('svm') @init('hu.peter.frontend.viewmodel.SecurityViewModel')">
+        <columns>
+            <column width="160px" />
+            <column width="280px" />
+        </columns>
+        <rows>
+            <row spans="2" align="center">
+                <label value="CREATE ACCOUNT"/>
+            </row>
+            <row>
+                <label value="User :"/>
+                <textbox name="username" value="@bind(svm.username)"/></row>
+            <row>
+                <label value="Password :"/>
+                <textbox type="password" name="password" value="@bind(svm.password)"/> </row>
+            <row spans="2" align="right">
+                <hlayout>
+                    <button type="reset" label="Reset" /> <button label="Create" onClick="@command('addUser')"/>
+                </hlayout>
+            </row>
+            <row spans="2" align="center">
+                <a href="/" style="color:#c71585">Login</a>
+            </row>
+        </rows>
+    </grid>
+</zk>

@@ -1,0 +1,57 @@
+<zk xmlns:n="native">
+    <style>
+        .z-label {
+        color: 	#c71585;
+        font-family: Monaco, "Courier New", monospace;
+        font-weight: bold;
+        }
+        .z-button {
+        background-color: #c71585;
+        font-weight: bold;
+        }
+        .z-button:hover {
+        opacity: 0.7;
+        background-color: #c71585;
+        }
+        .z-button:focus {
+        background-color: #c71585;
+        opacity: 1;
+        }
+        .z-row:hover>.z-row-inner,
+        .z-row:hover>.z-cell {
+        background-color: #ffffff;
+        }
+        .z-a {
+        color: 	#c71585;
+        font-family: Monaco, "Courier New", monospace;
+        font-weight: bold;
+        }
+    </style>
+    <n:form action="/login" method="POST">
+        <grid style="margin: auto" width="450px">
+            <columns>
+                <column width="160px" />
+                <column width="280px" />
+            </columns>
+            <rows>
+                <row spans="2" align="center">
+                    <label value="LOGIN"/>
+                </row>
+                <row>
+                    <label value="User :"/>
+                    <textbox name="username"/></row>
+                <row>
+                    <label value="Password :"/>
+                    <textbox type="password" name="password" /> </row>
+                <row spans="2" align="right">
+                    <hlayout>
+                        <button type="reset" label="Reset" /> <button type="submit" label="Login" />
+                    </hlayout>
+                </row>
+                <row spans="2" align="center">
+                    <a href="/createAccount" style="color:#c71585">Create an account</a>
+                </row>
+            </rows>
+        </grid>
+    </n:form>
+</zk>

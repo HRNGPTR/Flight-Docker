@@ -1,0 +1,30 @@
+<zk>
+    <div>
+        <borderlayout sclass="complex-layout" height="810px">
+        <center>
+            <panel title="Járatok" border="normal"
+                   height="100%" hflex="1">
+            <panelchildren >
+            <grid height="200px" model="@load(vm.searchFlight)" sizedByContent="true" span="true" >
+            <columns>
+                <column label="Kiindulási repülőtér" />
+                <column label="Úti cél" />
+                <column label="Dátum" />
+            </columns>
+            <template name="model" >
+                <row onClick="@command( 'setFlightId', id=each.id )" >
+                    <label value="@load(each.departure)" />
+                    <label value="@load(each.arrival)" />
+<!--                    <label value="@load(each.date)" />-->
+                </row>
+            </template>
+            </grid>
+            </panelchildren>
+            </panel>
+        </center>
+            <south>
+                <button label="OK" onClick="@command( 'changeView', page='~./zul/seat.zul' )" ></button>
+            </south>
+        </borderlayout>
+    </div>
+</zk>

@@ -1,0 +1,141 @@
+
+<!--<zk>-->
+<!--<style src="~./css/mySpecial.css" />-->
+<!--<style>-->
+<!--    .gl {-->
+<!--    color: #ffffff;-->
+<!--    text-transform: capitalize;-->
+<!--    font-size: 150%;-->
+<!--    }-->
+<!--    .z-row:hover>.z-row-inner,-->
+<!--    .z-row:hover>.z-cell {-->
+<!--    background-color: #ffffff;-->
+<!--    }-->
+<!--    .z-column {-->
+<!--    background-color:#c71585;-->
+<!--    }-->
+<!--    .inf-label {-->
+<!--    color: 	#c71585;-->
+<!--    font-family: Monaco, "Courier New", monospace;-->
+<!--    font-weight: bold;-->
+<!--    }-->
+<!--    .z-button {-->
+<!--    background-color: #c71585;-->
+<!--    font-weight: bold;-->
+<!--    }-->
+<!--    .z-button:hover {-->
+<!--    opacity: 0.7;-->
+<!--    background-color: #c71585;-->
+<!--    }-->
+<!--    .z-button:focus {-->
+<!--    background-color: #c71585;-->
+<!--    opacity: 1;-->
+<!--    }-->
+<!--</style>-->
+<!--        <grid model="@load(vm.userReservations)" sizedByContent="true" span="true">-->
+<!--            <columns>-->
+<!--                <column label="Honnan"/>-->
+<!--                <column label="Hova" />-->
+<!--                <column label="Dátum"/>-->
+<!--                <column label="Indulási idő" />-->
+<!--                <column label="Név" />-->
+<!--                <column label="Ülés" />-->
+<!--                <column label="Fizetve" />-->
+<!--                <column label="Jegy letöltése" />-->
+<!--            </columns>-->
+<!--            <template name="model">-->
+<!--                <row>-->
+<!--                    <label sclass="inf-label" value="${each.flightDto.departure.city}" />-->
+<!--                    <label sclass="inf-label" value="${each.flightDto.arrival.city}" />-->
+<!--                    <label sclass="inf-label" value="${each.flightDto.date.toString()}" />-->
+<!--                    <label sclass="inf-label" value="${each.-->
+<!--                    flightDto.dateHour.toString()}" />-->
+<!--                    <label sclass="inf-label" value="${each.seatDto.passenger.firstName} ${each.seatDto.passenger.secondName}" />-->
+<!--                    <label sclass="inf-label" value="${each.seatNumber()}" />-->
+<!--                    <label sclass="inf-label" value="TODO" />-->
+<!--                    <button label="LETÖLTÉS" onClick="@command('printTicket')" />-->
+<!--                </row>-->
+<!--            </template>-->
+<!--        </grid>-->
+<!--    <a href="/logout">Kilépés</a>-->
+<!--</zk>-->
+
+<zk>
+    <style src="~./css/mySpecial.css" />
+    <style>
+            .gl {
+            color: #ffffff;
+            text-transform: capitalize;
+            font-size: 150%;
+            }
+            .z-row:hover>.z-row-inner,
+            .z-row:hover>.z-cell {
+            background-color: #ffffff;
+            }
+            .z-column {
+            background-color:#c71585;
+            }
+            .inf-label {
+            color: 	#c71585;
+            font-family: Monaco, "Courier New", monospace;
+            font-weight: bold;
+            }
+            .z-button {
+            background-color: #c71585;
+            font-weight: bold;
+            }
+            .z-button:hover {
+            opacity: 0.7;
+            background-color: #c71585;
+            }
+            .z-button:focus {
+            background-color: #c71585;
+            opacity: 1;
+            }
+    </style>
+
+    <borderlayout viewModel="@id('vm') @init('hu.peter.frontend.viewmodel.ReservationViewModel')" >
+        <north size="90px" border="0" style="background-color:#191970;padding:0;margin:0">
+            <div>
+                <div style="float:right">
+                    <label value="@load(vm.currentUsername)" sclass="gl" style="color:white"/>
+                </div>
+                <label sclass="complex-layout-header-label"
+                       value="Magenta Airline" style="color: white"/>
+            </div>
+        </north>
+        <center  sclass="bg" border="0">
+            <div>
+<!--            model="@load(vm.userReservations)"-->
+                    <grid model="@load(vm.reservations)" sizedByContent="true" span="true">
+                        <columns>
+                            <column label="Honnan"/>
+                            <column label="Hova" />
+                            <column label="Dátum"/>
+                            <column label="Indulási idő" />
+                            <column label="Név" />
+                            <column label="Ülés" />
+                            <column label="Fizetve" />
+                            <column label="Jegy letöltése" />
+                        </columns>
+                        <template name="model">
+                            <row>
+                                <label sclass="inf-label" value="${each.flightDto.departure.city}" />
+                                <label sclass="inf-label" value="${each.flightDto.arrival.city}" />
+                                <label sclass="inf-label" value="${each.flightDto.date.toString()}" />
+                                <label sclass="inf-label" value="${each.
+                                flightDto.dateHour.toString()}" />
+                                <label sclass="inf-label" value="${each.seatDto.passenger.firstName} ${each.seatDto.passenger.secondName}" />
+                                <label sclass="inf-label" value="${each.seatNumber()}" />
+<!--                                <label sclass="inf-label" value="TODO" />-->
+                                <button label="FIZETÉS" disabled="true"/>
+                                <button label="LETÖLTÉS" onClick="@command('printTicket')" />
+                            </row>
+                        </template>
+                    </grid>
+                <a href="/logout" style="color:white; margin:auto">Kilépés</a>
+            </div>
+        </center>
+    </borderlayout>
+
+</zk>

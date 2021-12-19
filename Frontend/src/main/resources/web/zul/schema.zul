@@ -1,0 +1,161 @@
+<zk>
+    <!--    <button label="Személyes adatok" onClick="@command('open')" />-->
+    <style>
+        .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto;
+        }
+
+        <!--         .seat == 3-->
+        .RESERVED {
+        <!--         width: 15px;-->
+        margin: 2px;
+        background-color: #d3d3d3;
+        color: #808080;
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        box-shadow: none;
+        }
+        .RESERVED:hover {
+        background-color: #d3d3d3;
+        color: #808080;
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        }
+        .RESERVED:focus {
+        background-color: #d3d3d3;
+        color: #808080;
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        }
+        <!--         .free-seat-->
+        .FREE {
+        <!--         width: 15px;-->
+        margin: 2px;
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        box-shadow: none;
+        background-color: #006400;
+        color: #FFFFFF;
+        }
+        .FREE:hover {
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        background-color: #006400;
+        color: #FFFFFF;
+        }
+        .FREE:focus {
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        background-color: #006400;
+        color: #FFFFFF;
+        }
+        <!--         .selected-seat == 2-->
+        .SELECTED {
+        <!--         width: 15px;-->
+        margin: 2px;
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        box-shadow: none;
+        background-color: #c71585;
+        color: #FFFFFF;
+        }
+        .SELECTED:hover{
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        background-color: #c71585;
+        color: #FFFFFF;
+        }
+        .SELECTED:focus {
+        border: 3px outset grey;
+        border-radius: 0;
+        border-style: inset;
+        background-color: #c71585;
+        color: #FFFFFF;
+        }
+
+        .h-container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-left: 30px;
+        }
+        .v-container {
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        .inf-label {
+        color: 	#c71585;
+        font-family: Monaco, "Courier New", monospace;
+        font-weight: bold;
+        }
+        .inf-input {
+        width: 150px;
+        float: right;
+        }
+
+        .z-row:hover>.z-row-inner,
+        .z-row:hover>.z-cell {
+        background-color: #ffffff;
+        }
+
+    </style>
+    <borderlayout width="700px" height="1000px" >
+        <west width="300px">
+            <vlayout sclass="v-layout">
+                <hbox sclass="h-layout">
+                    <label value="First Name" sclass="inf-label"/>
+                    <textbox sclass="inf-input" value="@save(vm.firstName)"/>
+                </hbox>
+                <hbox sclass="h-layout">
+                    <label value="Second Name" sclass="inf-label"/>
+                    <textbox sclass="inf-input" value="@save(vm.secondName)"/>
+                </hbox>
+                <hbox sclass="h-layout">
+                    <label value="Sex" sclass="inf-label"/>
+                    <combobox sclass="inf-input" value="@save(vm.sex)">
+                        <comboitem label="FEMALE" value="FM"/>
+                        <comboitem label="MALE" value="M"/>
+                    </combobox>
+                </hbox>
+                <hbox sclass="h-layout">
+                    <label value="Passport" sclass="inf-label"/>
+                    <textbox sclass="inf-input" value="@save(vm.passport)"/>
+                </hbox>
+                <button label="OK" onClick="@command('createSeatReservation')"/>
+            </vlayout>
+        </west>
+        <east width="400px">
+            <div sclass="grid-container" >
+                <grid width="400px" model="@load(vm.seatRows)" sizedByContent="true" span="true">
+                    <template name="model">
+                        <row>
+                            <div>
+                                <button label="A" sclass="${each.getRow().get(0).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(0).getId())"/>
+                                <button label="B" sclass="${each.getRow().get(1).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(1).getId())"/>
+                                <button label="C" sclass="${each.getRow().get(2).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(2).getId())"/>
+                                <label value="${each.num}" style="padding-left:2px; padding-right:2px"/>
+                                <button label="D" sclass="${each.getRow().get(3).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(3).getId())"/>
+                                <button label="E" sclass="${each.getRow().get(4).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(4).getId())"/>
+                                <button label="F" sclass="${each.getRow().get(5).getStatus()}"
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(5).getId())"/>
+                            </div>
+                        </row>
+                    </template>
+                </grid>
+            </div>
+        </east>
+    </borderlayout>
+</zk>

@@ -1,0 +1,62 @@
+#vesion: "3.9"
+
+services:
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockerized
+      - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
+#      - DB_USERNAME=postgres
+#      - DB_PASSWORD=password
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=TOmi1970
+      - MYSQL_PASSWORD=TOmi1970
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysql_db
+    networks:
+      - frontend
+      - backend
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - frontend
+      - backend
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockerized
+      - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=TOmi1970
+      - MYSQL_ROOT_PASSWORD=TOmi1970
+      - MYSQL_DATABASE=flight_ticket_application_2
+  mysql_db:
+    image: mysql:8.0.27
+    restart: always
+    ports:
+      - 3307:3306
+    networks:
+      - backend
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+#      - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=TOmi1970
+      - MYSQL_ROOT_PASSWORD=TOmi1970
+      - MYSQL_DATABASE=flight_ticket_application_2
+
+volumes:
+  db_data:
+networks:
+  frontend:
+  backend:

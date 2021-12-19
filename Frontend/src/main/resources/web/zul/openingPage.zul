@@ -1,0 +1,118 @@
+<zk>
+    <style>
+        .separator {
+            width: 400px;
+            position:relative;
+            left: 100px;
+            margin-top: 10px;
+            margin-botton: 10px;
+        }
+        .main-container {
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .h-container {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-left: 30px;
+        }
+        .v-container {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .inf-label {
+            color: 	#c71585;
+            font-family: Monaco, "Courier New", monospace;
+            font-weight: bold;
+        }
+        .inf-input {
+            width: 150px;
+        }
+        .title {
+            font-size: 2em;
+            display: block;
+            text-align: center;
+            font-family: Monaco, 'Courier New', monospace;
+            padding-top: 50px;
+            padding-botton:50px;
+        }
+        .button {
+            background-color: #c71585;
+            font-weight: bold;
+            position:absolute;
+            -ms-transform: translate(180%, 20%);
+            transform: translate(180%, 20%);
+        }
+        .button:hover {
+            opacity: 0.7;
+            background-color: #c71585;
+        }
+        .button:focus {
+            background-color: #c71585;
+            opacity: 1;
+        }
+        .c-item {
+
+        }
+    </style>
+        <div>
+                                    <div id="repulojegy" sclass="main-container">
+                                                            <vlayout>
+                                                                <label value="Repülőjegy" sclass="title"/>
+                                                                <separator bar="true" sclass="separator"/>
+                                                            <hlayout sclass="h-container">
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Honnan" sclass="inf-label"/>
+                                                                    <combobox id="from" sclass="inf-input" width="150px" onChanging="@command('searchAirport',prefix=event.value)"
+                                                                              autodrop="true" buttonVisible="false" model="@bind(vm.airports)" value="@bind(vm.from)" emptySearchMessage="No result">
+                                                                            <template name="model">
+                                                                                <comboitem label="${each.city}" value="${each.city}"
+                                                                                           onSelect="from.value=self.selectedItem.label; from.close();"/>
+                                                                            </template>
+                                                                    </combobox>
+                                                                </vlayout>
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Hova" sclass="inf-label"/>
+                                                                    <combobox id="to" sclass="inf-input" width="150px" onChanging="@command('searchAirport',prefix=event.value)"
+                                                                              autodrop="true" buttonVisible="false" model="@bind(vm.airports)" value="@bind(vm.to)">
+                                                                        <template name="model">
+                                                                            <comboitem label="${each.city}" value="${each.city}"
+                                                                                       onSelect="to.value=self.selectedItem.label; to.close();"/>
+                                                                        </template>
+                                                                    </combobox>
+                                                                </vlayout>
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Utazás tipusa" sclass="inf-label"/>
+<!--                                                                    value="@save(vm.way)"-->
+                                                                    <combobox sclass="inf-input"  value="Oda" disabled="true" >
+                                                                        <comboitem label="Oda" value="ONE_WAY"/>
+                                                                        <comboitem label="Oda-Vissza" value="TWO_WAY"/>
+                                                                    </combobox>
+                                                                </vlayout>
+                                                            </hlayout>
+                                                            <hlayout sclass="h-container">
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Indulás" sclass="inf-label"/>
+<!--                                                                    onCreate="self.value = new Date()"-->
+                                                                    <datebox sclass="inf-input" constraint="no past"   value="@save(vm.leaveDate)"/>
+                                                                </vlayout>
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Visszaút" sclass="inf-label"/>
+<!--                                                                    onCreate="self.value = new Date()"-->
+                                                                    <datebox sclass="inf-input" constraint="no past" onCreate="self.value = new Date()" value="@save(vm.returnDate)" disabled="true"/>
+                                                                </vlayout>
+                                                                <vlayout sclass="v-container">
+                                                                    <label value="Utasok" sclass="inf-label"/>
+<!--                                                                    onCreate="self.value = 1"-->
+                                                                    <spinner value="@save(vm.passengerNum)" sclass="inf-input" constraint="no empty, min 1 max 10" />
+                                                                </vlayout>
+                                                            </hlayout>
+                                                            </vlayout>
+                                                            <separator bar="true" sclass="separator"/>
+                                                        <button label="FOGLALÁS" sclass="button" onClick="@command('search')"/>
+                                    </div>
+        </div>
+                        </zk>
