@@ -23,7 +23,6 @@ public class UserReservationDto implements Serializable {
         List<SeatDto> seats = flightDto.getAirplane().getSeats();
         for(;index<seats.size();index++) {
             PassengerDto p = seats.get(index).getPassenger();
-            System.out.println(seatDto.getPassenger());
             if(p==null) continue;
             if( seatDto.getPassenger().getSecondName().equals(p.getSecondName())
                 && seatDto.getPassenger().getFirstName().equals(p.getFirstName())
@@ -32,7 +31,6 @@ public class UserReservationDto implements Serializable {
                 break;
                 }
         }
-        System.out.println("INDEX:"+index);
         int row = index / 6 +  1;
         String[] letters = {"A","B","C","D","E","F"};
         String letter = letters[ index%6 ];

@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -68,7 +69,8 @@ public class ViewModel extends SelectorComposer<Component> {
     private String firstName;
     private String secondName;
     private String passport;
-    private PassengerDto.Sex sex;
+//    private PassengerDto.Sex sex;  //deprecated
+    private String sex;
     private List<PassengerDto> passengers;
 
     /*user's reservations*/
@@ -84,17 +86,11 @@ public class ViewModel extends SelectorComposer<Component> {
         views.put("reservations","~./zul/userReservations.zul");
         view = views.get("open");
 
-
-
-        //TMP
         way = "ONE_WAY";
         seatSelected = false;
         passengers = new ArrayList<>();
         currentUsername = getCurrentUser();
-        userReservations = reservationService.getReservationByUsername("fpmoles");
     }
-
-
 
     /*-----OPENING-PAGE-----*/
 
@@ -116,7 +112,7 @@ public class ViewModel extends SelectorComposer<Component> {
     @Command
     @NotifyChange("view")
     public void search() {
-        if( from==null||to==null||leaveDate==null||passengerNum==0 ) {
+        if(from==null || from.isEmpty() || to==null || to.isEmpty() || leaveDate==null || passengerNum==0 ) {
             System.err.println("EMPTY");
             Messagebox.show("Kevés adatot adott meg!","Magenta Airline",Messagebox.OK,Messagebox.EXCLAMATION);
             return;
@@ -138,8 +134,19 @@ public class ViewModel extends SelectorComposer<Component> {
     private void loadFlights() {
         LocalDate lDate = convertToLocalDateViaSqlDate(leaveDate);
         flights = flightService.getFlightOnDate(from,to,lDate);
+        flights = flights.stream().filter( f -> seatsAvailable(f) ).collect(Collectors.toList());
     }
 
+    /*Van-e legalább annyi szabad hely ahány helyet le akarunk foglalni*/
+    private boolean seatsAvailable(FlightDto flight) {
+        List<SeatDto> seats = flight.getAirplane().getSeats();
+        int freeSeatCounter = 0;
+        for( SeatDto seat : seats ) {
+            if(seat.getPassenger()==null)
+                freeSeatCounter++;
+        }
+        return freeSeatCounter >= passengerNum;
+    }
     /*----LIST-FLIGHT-----*/
 
     /**
@@ -205,19 +212,19 @@ public class ViewModel extends SelectorComposer<Component> {
     @NotifyChange({"view","passengers","firstName","secondName","sex","passport","seatRows"})
     public void createSeatReservation() {
 
-        if(firstName==null||secondName==null||sex==null||passport==null) {
+        if(firstName==null || firstName.isEmpty() || secondName==null || secondName.isEmpty() || sex==null || sex.isEmpty() || passport==null || passport.isEmpty() ) {
             Messagebox.show("Az utas adatai hiányosak!","Magenta Airline",Messagebox.OK,Messagebox.EXCLAMATION);
             return;
         }
 
         if(seatSelected) {
-            PassengerDto passengerDto = new PassengerDto(-1l, firstName, secondName, sex, passport);
+            PassengerDto.Sex p_sex = (sex.equals("Férfi"))? PassengerDto.Sex.MALE : PassengerDto.Sex.FEMALE;
+            PassengerDto passengerDto = new PassengerDto(-1l, firstName, secondName, p_sex, passport);
             long id = flight.getAirplane().getSeats().get(seatNum).getId();
             SeatDto seat = new SeatDto(id, -1, passengerDto);
             ReservationDto reservation = new ReservationDto(currentUsername,flight.getId(), seat);
 
-//            boolean success = flightService.reserveSeat(reservation); //TODO
-            boolean success = true;
+            boolean success = flightService.reserveSeat(reservation);
             resetFields();
 
             /*if seat is already reserved*/
@@ -232,8 +239,8 @@ public class ViewModel extends SelectorComposer<Component> {
             /*if all seats successfully reserved*/
             if(passengerNum==0) {
                 Messagebox.show("Hely(ek) lefoglalva!","Magenta Airline",Messagebox.OK,Messagebox.INFORMATION);
-                userReservations = reservationService.getReservationByUsername(currentUsername); //TODO
-//                view = views.get("reservations");
+                userReservations = reservationService.getReservationByUsername(currentUsername);
+                view = views.get("pay");
                 passengers.clear();
             }
         } else {
@@ -256,49 +263,6 @@ public class ViewModel extends SelectorComposer<Component> {
                 if(sr.getStatus() == SeatRepresentation.Status.SELECTED)
                     sr.setStatus(SeatRepresentation.Status.FREE);
             }
-        }
-    }
-
-    /*-----USER-RESERVATION-----*/
-
-    /**
-     * <p>Jegy generálása és letöltése</p>
-     * @return Nothing
-     */
-    @Command
-    public void printTicket() {
-        generateBoardingPass(Arrays.asList(userReservations.get(0)));
-        downloadBoardingPass(currentUsername);  //not working
-    }
-
-    /**
-     * <p>Legenerálja a beszállókértyát pdf-formátumban, a kapott ReservationDto lista alapján.</p>
-     * @param reservations
-     * @return Nothing
-     */
-    private void generateBoardingPass(List<UserReservationDto> reservations) {
-        PdfGenerator generator = new PdfGenerator();
-        for (UserReservationDto r : reservations) {
-            try {
-                generator.generateBoardingPass(r);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * <p>Letölti a legenerált jegyet. EGYENLŐRE NEM MÜKÖDIK!</p>
-     * @param username
-     * @return Nothing
-     */
-    //TODO: not working
-    private void downloadBoardingPass(String username) {
-        try {
-            Filedownload.save("~./pdf/"+username+".pdf", null);
-//            Filedownload.save("~./pdf/fpmoles.pdf",null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

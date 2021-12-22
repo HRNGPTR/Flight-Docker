@@ -16,30 +16,8 @@
         }
     </style>
     <div>
-<!--        <borderlayout sclass="complex-layout" height="400px">-->
         <borderlayout sclass="complex-layout" height="550px">
             <center>
-<!--                <grid model="@load(vm.seats)" sclass="grid-container"  sizedByContent="true" span="true" style="overflow: scroll;" height="380">-->
-<!--                <template name="model" var="item">-->
-<!--                    <row>-->
-<!--                        <button label="@load(item)" onClick="@command('getButton', button=item)" />-->
-<!--                    </row>-->
-<!--                </template>-->
-<!--                </grid>-->
-<!--                <panel title="Ülések" border="normal"-->
-<!--                       height="100%" hflex="1">-->
-<!--                    <panelchildren>-->
-<!--                        <grid height="200px" model="@load(vm.seats)" sizedByContent="true" span="true">-->
-<!--                            <template name="model" >-->
-<!--                                <row>-->
-<!--                                    <button label="@load(each)" />-->
-<!--                                    <button label="@load(each)" />-->
-<!--                                    <button label="@load(each)" />-->
-<!--                                </row>-->
-<!--                            </template>-->
-<!--                        </grid>-->
-<!--                    </panelchildren>-->
-<!--                </panel>-->
                 <grid model="@load(vm.seatRep)" height="350px">
                     <auxhead>
                         <auxheader label="ÜLÉSEK"></auxheader>

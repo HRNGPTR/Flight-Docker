@@ -14,8 +14,8 @@
     </style>
     <div>
         <vbox sclass="box" align="center">
-            <label value="Sorry, something went wrong"/>
-            <a href="/" style="color: #c71585">Return home</a>
+            <label value="Sajnáljuk, valahol valami elromlott!"/>
+            <a href="/" style="color: #c71585">Vissza a kezdőlapra</a>
         </vbox>
     </div>
 </zk>

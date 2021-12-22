@@ -45,20 +45,20 @@ public class FlightService {
     public FlightDto getFlightById(Long id) {
 //        String url = FLIGHT_CONTROLLER.concat("/id/{id}");
         String url = backendUri.concat("/api/flight/id/{id}");
-        //TODO: try - catch
+        try {
             ResponseEntity<FlightDto> responseEntity = restTemplate.getForEntity(url, FlightDto.class, id);
             return responseEntity.getBody();
+        } catch ( HttpClientErrorException | NullPointerException e) {
+            return null;
+        }
 
     }
 
-    //TODO: finomitas
     public boolean reserveSeat(ReservationDto reservation) {
 //        String url = FLIGHT_CONTROLLER.concat("/reserve");
         String url = backendUri.concat("/api/flight/reserve");
         ResponseEntity<HttpStatus> responseEntity = restTemplate.postForEntity(url,reservation,HttpStatus.class);
         if(responseEntity.getStatusCode()==HttpStatus.OK) return true;
         return false;
-//        if(responseEntity.getStatusCode()==HttpStatus.BAD_REQUEST)
-//            return false;
     }
 }

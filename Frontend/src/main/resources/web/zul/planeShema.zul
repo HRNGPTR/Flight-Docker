@@ -1,16 +1,10 @@
 <zk>
-<!--    <button label="Személyes adatok" onClick="@command('open')" />-->
      <style>
          .grid-container {
-<!--            display: grid;-->
-<!--            grid-template-columns: auto auto auto auto auto auto;-->
             margin-left:300px;
             margin-right:300px;
          }
-
-<!--         .seat == 3-->
          .RESERVED {
-<!--         width: 15px;-->
          margin: 2px;
          background-color: #d3d3d3;
          color: #808080;
@@ -33,9 +27,7 @@
          border-radius: 0;
          border-style: inset;
          }
-<!--         .free-seat-->
          .FREE {
-<!--         width: 15px;-->
          margin: 2px;
          border: 3px outset grey;
          border-radius: 0;
@@ -58,9 +50,7 @@
          background-color: #006400;
          color: #FFFFFF;
          }
-<!--         .selected-seat == 2-->
          .SELECTED {
-<!--         width: 15px;-->
          margin: 2px;
          border: 3px outset grey;
          border-radius: 0;
@@ -83,7 +73,6 @@
          background-color: #c71585;
          color: #FFFFFF;
          }
-
          .h-container {
          padding-top: 10px;
          padding-bottom: 10px;
@@ -103,12 +92,10 @@
          width: 100px;
          margin-right: 0;
          }
-
          .z-row:hover>.z-row-inner,
          .z-row:hover>.z-cell {
          background-color: #ffffff;
          }
-
          .flight-info {
             background-color: #d3d3d3;
             width: 300px;
@@ -172,8 +159,8 @@
                         <row>
                             <label value="Nem" sclass="inf-label"/>
                             <combobox sclass="inf-input" value="@bind(vm.sex)">
-                                <comboitem label="FEMALE" value="FM"/>
-                                <comboitem label="MALE" value="M"/>
+                                <comboitem label="Nő" value="FM"/>
+                                <comboitem label="Férfi" value="M"/>
                             </combobox>
                         </row>
                         <row>

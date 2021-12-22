@@ -24,14 +24,17 @@ public class FlightService {
     private final AirplaneTypeService airplaneTypeService;
     private final PassengerService passengerService;
     private final SeatService seatService;
+    private final UserReservationService reservationService;
 
-    public FlightService(FlightRepository flightRepository, AirportService airportService, AirplaneTypeService airplaneTypeService
-            , PassengerService passengerService, SeatService seatService) {
+    public FlightService(FlightRepository flightRepository, AirportService airportService
+            , AirplaneTypeService airplaneTypeService, PassengerService passengerService
+            , SeatService seatService, UserReservationService reservationService) {
         this.flightRepository = flightRepository;
         this.airportService = airportService;
         this.airplaneTypeService = airplaneTypeService;
         this.passengerService = passengerService;
         this.seatService = seatService;
+        this.reservationService = reservationService;
     }
 
     //=====CREATE=====
@@ -92,29 +95,20 @@ public class FlightService {
             PassengerDto pdto = seatDto.getPassenger();
             Passenger p = passengerService.createAndGetPassenger(pdto.getFirstName()
                     , pdto.getSecondName(),pdto.getSex(),pdto.getPassport());
-            //TODO: id /= get(...)
+
             seat.get().setPassenger(p);
             seatService.saveSeat(seat.get());
-            //**********RESERVATION************
+
                 Reservation res = new Reservation();
                 res.setUsername(reservation.getUsername());
                 res.setFlight(flight.get());
                 res.setSeat(seat.get());
-            //*********************************
-//            flight.get().getAirplane().getSeats().get( reservation.getSeat().getId().intValue() ).setPassenger(p);
+                reservationService.addReservation(res);
+
             flightRepository.save(flight.get());
         } else throw new ReserveSeatException("Seat already reserved");
     }
 
     //=====DELETE=====
-    //TODO: how to delete just one
-//    public void deleteFlight(String from, String to, LocalDateTime date) {
-//        Optional<Airport> departure = airportService.getAirport(from);
-//        Optional<Airport> arrival = airportService.getAirport(to);
-//        if(departure.isPresent() && arrival.isPresent()) {
-//            Optional<Flight> flight = flightRepository.findFlightByDepartureAndArrivalAndDate(departure.get(), arrival.get(), date);
-//            if(flight.isPresent())
-//                flightRepository.delete(flight.get());
-//        }
-//    }
+
 }

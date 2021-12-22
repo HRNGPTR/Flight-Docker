@@ -29,4 +29,6 @@ public class UserReservationService {
         }
         return userReservations;
     }
+
+    public void addReservation(Reservation r) { reservationRepository.save(r); }
 }

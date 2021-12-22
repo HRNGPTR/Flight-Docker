@@ -1,8 +1,6 @@
 <window id="reserveDialog" width="500px" height="500px" closable="false" mode="modal">
     <style>
         .container {
-<!--            margin-left: auto;-->
-<!--            margin-right: auto;-->
             padding-top: 10px;
             padding-button: 10px;
         }

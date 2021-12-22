@@ -29,21 +29,21 @@
         </columns>
         <rows>
             <row spans="2" align="center">
-                <label value="CREATE ACCOUNT"/>
+                <label value="ÚJ FIÓK"/>
             </row>
             <row>
-                <label value="User :"/>
+                <label value="Felhasználónév :"/>
                 <textbox name="username" value="@bind(svm.username)"/></row>
             <row>
-                <label value="Password :"/>
+                <label value="Jelszó :"/>
                 <textbox type="password" name="password" value="@bind(svm.password)"/> </row>
             <row spans="2" align="right">
                 <hlayout>
-                    <button type="reset" label="Reset" /> <button label="Create" onClick="@command('addUser')"/>
+                    <button type="reset" label="TÖRLÉS" /> <button label="LÉTREHOZ" onClick="@command('addUser')"/>
                 </hlayout>
             </row>
             <row spans="2" align="center">
-                <a href="/" style="color:#c71585">Login</a>
+                <a href="/" style="color:#c71585">Belépés</a>
             </row>
         </rows>
     </grid>

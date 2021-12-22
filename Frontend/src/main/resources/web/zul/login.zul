@@ -35,21 +35,21 @@
             </columns>
             <rows>
                 <row spans="2" align="center">
-                    <label value="LOGIN"/>
+                    <label value="BEJELENTKEZÉS"/>
                 </row>
                 <row>
-                    <label value="User :"/>
+                    <label value="Felhasználónév :"/>
                     <textbox name="username"/></row>
                 <row>
-                    <label value="Password :"/>
+                    <label value="Jelszó :"/>
                     <textbox type="password" name="password" /> </row>
                 <row spans="2" align="right">
                     <hlayout>
-                        <button type="reset" label="Reset" /> <button type="submit" label="Login" />
+                        <button type="reset" label="TÖRLÉS" /> <button type="submit" label="BELÉP" />
                     </hlayout>
                 </row>
                 <row spans="2" align="center">
-                    <a href="/createAccount" style="color:#c71585">Create an account</a>
+                    <a href="/createAccount" style="color:#c71585">Fiók létrehozása</a>
                 </row>
             </rows>
         </grid>

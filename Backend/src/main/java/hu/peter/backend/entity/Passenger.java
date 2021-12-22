@@ -22,7 +22,7 @@ public class Passenger {
     private String firstName;
     private String secondName;
     private Sex sex;
-    @Column(unique = true)
+//    @Column(unique = true)
     private String passport;
 
     public Passenger(String firstName, String secondName, Sex sex, String passport) {

@@ -48,7 +48,6 @@ public class ApplicationSecurityConfigurator extends WebSecurityConfigurerAdapte
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //TODO
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -58,7 +57,6 @@ public class ApplicationSecurityConfigurator extends WebSecurityConfigurerAdapte
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/error")
-
 
                 .and()
                 .logout().invalidateHttpSession(true)

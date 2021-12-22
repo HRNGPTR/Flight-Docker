@@ -40,7 +40,7 @@ public class SecurityViewModel {
     @Command
     @NotifyChange({"username","password"})
     public void addUser() {
-        if(username.isEmpty() || password.isEmpty() ) {
+        if(username==null || username.isEmpty() || password==null || password.isEmpty() ) {
             Messagebox.show("A Felhasználónév vagy jelszó hiányzik!","Magenta Airline",Messagebox.OK,Messagebox.EXCLAMATION);
             return;
         }
@@ -57,7 +57,6 @@ public class SecurityViewModel {
             auth.setAuthGroup("USER");
             this.authGroupRepository.save(auth);
 
-            System.out.println("USER CREATED: username:" + username + ", password: " + password);
             Messagebox.show("Fiók létrehozva","Magenta Airline",Messagebox.OK,Messagebox.INFORMATION);
         } else {
             Messagebox.show("A felhasználónév már foglalt!","Magenta Airline",Messagebox.OK,Messagebox.EXCLAMATION);

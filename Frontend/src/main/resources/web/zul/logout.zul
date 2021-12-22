@@ -14,8 +14,8 @@
     </style>
     <div>
         <vbox sclass="box" align="center">
-            <label value="You have successfully logged out!"/>
-            <a href="/" style="color: #c71585">Return home</a>
+            <label value="Kijelentkezve!"/>
+            <a href="/" style="color: #c71585">Kezdőlap</a>
         </vbox>
     </div>
 </zk>

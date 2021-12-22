@@ -3,9 +3,10 @@
 services:
 
   backend:
-    build:
-      context: ./Backend
-      dockerfile: Dockerfile
+#    build:
+#      context: ./Backend
+#      dockerfile: Dockerfile
+    image: tomi70/flight-backend:1.0
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=dockerized
