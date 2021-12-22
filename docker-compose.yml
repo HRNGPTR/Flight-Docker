@@ -3,10 +3,10 @@
 services:
 
   backend:
-#    build:
-#      context: ./Backend
-#      dockerfile: Dockerfile
-    image: tomi70/flight-backend:1.0
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+#    image: tomi70/flight-backend:1.0
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=dockerized
@@ -14,8 +14,8 @@ services:
 #      - DB_USERNAME=postgres
 #      - DB_PASSWORD=password
       - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=TOmi1970
       - MYSQL_PASSWORD=TOmi1970
+      - MYSQL_ROOT_PASSWORD=TOmi1970
     ports:
       - 8081:8081
     depends_on:
@@ -27,6 +27,7 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
+#    image: tomi70/flight-frontend:1.0
     restart: always
     ports:
       - 8080:8080
@@ -39,7 +40,6 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=TOmi1970
       - MYSQL_ROOT_PASSWORD=TOmi1970
-      - MYSQL_DATABASE=flight_ticket_application_2
   mysql_db:
     image: mysql:8.0.27
     restart: always
@@ -51,8 +51,8 @@ services:
       - db_data:/var/lib/mysql
     environment:
 #      - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=TOmi1970
+      - MYSQL_USER=peti
+      - MYSQL_PASSWORD=pwd
       - MYSQL_ROOT_PASSWORD=TOmi1970
       - MYSQL_DATABASE=flight_ticket_application_2
 

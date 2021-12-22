@@ -15,7 +15,7 @@ spring:
   datasource:
     url: ${DATASOURCE_URL}
     username: ${MYSQL_USER}
-    password: ${MYSQL_ROOT_PASSWORD}
+    password: ${MYSQL_PASSWORD}
   jpa:
     show-sql: true
     generate-ddl: true

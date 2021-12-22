@@ -208,7 +208,7 @@
                                 <button label="E" sclass="${each.getRow().get(4).getStatus()}"
                                         onClick="@command('clickOnSeat', id=each.getRow().get(4).getId())"/>
                                 <button label="F" sclass="${each.getRow().get(5).getStatus()}"
-                                        onClick="@command('clickOnSeat', id=each.getRow().get(5).getId())" href="/userReservations"/>
+                                        onClick="@command('clickOnSeat', id=each.getRow().get(5).getId())" />
                                 </div>
                             </row>
                         </template>
