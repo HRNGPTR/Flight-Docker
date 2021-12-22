@@ -26,13 +26,15 @@ public class Flight {
     private LocalDate date; //mikor indul
     private LocalTime dateHour; //hany orakkor indul
     private LocalTime travelTime; //mennyi ideig tart
-    private LocalTime arrivalTime;
+    private LocalTime arrivalTime; //mikor erkezik meg
     private Integer seatPrice;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Airplane airplane;
 
-    public Flight(Airport departure, Airport arrival, LocalDate date,LocalTime dateHour,LocalTime arrivalTime /*LocalTime travelTime*/, Integer seatPrice, AirplaneType airplaneType) {
+    public Flight(Airport departure, Airport arrival, LocalDate date
+            ,LocalTime dateHour,LocalTime arrivalTime
+            , Integer seatPrice, AirplaneType airplaneType) {
         this.departure = departure;
         this.arrival = arrival;
         this.date = date;
