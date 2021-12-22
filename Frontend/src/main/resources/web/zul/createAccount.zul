@@ -32,10 +32,10 @@
                 <label value="ÚJ FIÓK"/>
             </row>
             <row>
-                <label value="Felhasználónév :"/>
+                <label value="Felhasználónév:"/>
                 <textbox name="username" value="@bind(svm.username)"/></row>
             <row>
-                <label value="Jelszó :"/>
+                <label value="Jelszó:"/>
                 <textbox type="password" name="password" value="@bind(svm.password)"/> </row>
             <row spans="2" align="right">
                 <hlayout>
