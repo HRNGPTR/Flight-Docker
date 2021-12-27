@@ -6,7 +6,7 @@ services:
     build:
       context: ./Backend
       dockerfile: Dockerfile
-#    image: tomi70/flight-backend:1.0
+#    image: hpeter99/flight-backend:1.0
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=dockerized
@@ -27,7 +27,7 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-#    image: tomi70/flight-frontend:1.0
+#    image: hpeter99/flight-frontend:1.0
     restart: always
     ports:
       - 8080:8080
