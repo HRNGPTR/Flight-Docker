@@ -11,8 +11,6 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dockerized
       - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
-#      - DB_USERNAME=postgres
-#      - DB_PASSWORD=password
       - MYSQL_USER=root
       - MYSQL_PASSWORD=TOmi1970
       - MYSQL_ROOT_PASSWORD=TOmi1970
@@ -27,7 +25,7 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-#    image: hpeter99/flight-frontend:1.0
+#    image: hpeter99/flight-frontend:1.1
     restart: always
     ports:
       - 8080:8080
@@ -50,7 +48,6 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     environment:
-#      - DATASOURCE_URL=jdbc:mysql://mysql_db:3306/flight_ticket_application_2?serverTimezone=UTC
       - MYSQL_USER=peti
       - MYSQL_PASSWORD=pwd
       - MYSQL_ROOT_PASSWORD=TOmi1970

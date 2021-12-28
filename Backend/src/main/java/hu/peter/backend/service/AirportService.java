@@ -16,26 +16,23 @@ public class AirportService {
         this.airportRepository = airportRepository;
     }
 
-    //=====CREATE=====
-    public void createAirport(String name, String country) {
-        Airport airport = new Airport(name,country);
-        airportRepository.save(airport);
+    /*-----CREATE-----*/
+    public Airport createAirport(String name, String country) {
+        Airport airport = new Airport(name, country);
+        return airportRepository.save(airport);
     }
-    //=====READ=====
+
+    /*-----READ-----*/
     public Optional<Airport> getAirport(String cityName) {
         return airportRepository.findAirportByCity(cityName);
     }
+
     public List<Airport> getAllAirport() {
         return airportRepository.findAll();
     }
+
     public List<Airport> getAirportBeginsWith(String prefix) {
         return airportRepository.findAirportsByCityStartsWith(prefix);
     }
-    //Update
-    //=====DELETE=====
-//    public void deleteAirport(String cityName) {
-//        Optional<Airport> airport = airportRepository.findAirportByCity(cityName);
-//        if(airport.isPresent())
-//            airportRepository.delete(airport.get());
-//    }
+
 }

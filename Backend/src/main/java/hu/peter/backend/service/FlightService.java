@@ -108,7 +108,4 @@ public class FlightService {
             flightRepository.save(flight.get());
         } else throw new ReserveSeatException("Seat already reserved");
     }
-
-    //=====DELETE=====
-
 }
