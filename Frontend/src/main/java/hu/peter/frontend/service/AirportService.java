@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class AirportService {
-    //TODO:https://www.baeldung.com/spring-rest-template-error-handling
+
 
     private RestConfig restConfig;
     private final RestTemplate restTemplate;

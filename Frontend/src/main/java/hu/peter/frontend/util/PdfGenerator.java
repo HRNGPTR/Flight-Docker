@@ -19,8 +19,6 @@ public class PdfGenerator {
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
         PDFont font =  PDType1Font.HELVETICA ;
 
-//        String uri = "src/main/resources/web/pdf/";
-
         contentStream.beginText();
         contentStream.moveTextPositionByAmount(10, 700);
         contentStream.setFont(font, 12);

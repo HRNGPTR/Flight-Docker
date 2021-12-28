@@ -31,8 +31,7 @@ public class Airplane {
 
         seats = new ArrayList<>();
         int rows = airplaneType.getNumOfRows();
-        int columns = airplaneType.getSeatsPerRows();
-        columns = DEFAULT_SEATS_PER_ROW; //for front-end reasons (not ideal, but at this point necessary)
+        int columns = DEFAULT_SEATS_PER_ROW;
 
         for( int row = 0; row < rows; row++ ) {
             for( int column = 0; column < columns; column++ ) {

@@ -15,7 +15,7 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    //=====CREATE=====
+
     //=====READ=====
     public Optional<Seat> getSeatById(Long id) {
         return seatRepository.findById(id);

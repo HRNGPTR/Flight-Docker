@@ -40,8 +40,7 @@ public class FlightController {
             return new ResponseEntity<>(flights, HttpStatus.OK);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK); //empty list, no flight found
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
         }
     }
     @GetMapping("/id/{id}")

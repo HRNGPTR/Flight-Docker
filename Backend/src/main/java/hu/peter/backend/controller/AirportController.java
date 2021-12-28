@@ -59,7 +59,7 @@ public class AirportController {
         try {
             airportService.createAirport(ap.getCity(),ap.getCountry());
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {  // try-catch not necceasary
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
